@@ -22,7 +22,16 @@ public class Evento {
     private String descrizione;
     private LocalDate dataevento;
     private String luogo;
-    private String numeroposti;
+    private String postimax;
     @ManyToOne
     private User user;
+
+    public Evento(String titolo, String descrizione, LocalDate dataevento, String luogo, String postimax, User user) {
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.dataevento = dataevento;
+        this.luogo = luogo;
+        this.postimax = postimax;
+        this.user = user;
+    }
 }
