@@ -1,6 +1,7 @@
 package luca.vigano.gestioneEventi.services;
 
 import luca.vigano.gestioneEventi.entities.Evento;
+import luca.vigano.gestioneEventi.entities.User;
 import luca.vigano.gestioneEventi.exceptions.BadRequestException;
 import luca.vigano.gestioneEventi.exceptions.NotFoundException;
 import luca.vigano.gestioneEventi.payloads.EventoDTO;
@@ -20,12 +21,16 @@ public class EventoService {
 
     @Autowired
     private EventoRepository eventoRepository;
+    @Autowired
+    private UserService userService;
 
     public Evento save(EventoDTO body){
         if(body.dataevento().isBefore(LocalDate.now())){
             throw new BadRequestException("La data inserita è già passata");
         }
-        Evento newEvento = new Evento(body.titolo(), body.descrizione(), body.dataevento(), body.luogo(), body.postimax());
+
+        User userFound = userService.findById(body.userId());
+        Evento newEvento = new Evento(body.titolo(), body.descrizione(), body.dataevento(), body.luogo(), body.postimax(),userFound);
         return eventoRepository.save(newEvento);
     }
 
