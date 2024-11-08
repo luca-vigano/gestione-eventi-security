@@ -10,6 +10,6 @@ public record PrenotazioneDTO (
         @NotNull(message = "l'Id dell'evento è obbligatorio!")
         UUID eventoId,
         @NotNull(message = "Numero posti prenotati è obbligatorio!")
-        String numeroposti
+        int numeroposti
 ) {
 }

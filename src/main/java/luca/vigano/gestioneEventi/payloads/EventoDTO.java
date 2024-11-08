@@ -14,8 +14,8 @@ public record EventoDTO(
         LocalDate dataevento,
         @NotNull(message = "Descrizione obbligatoria!")
         String descrizione,
-        @NotNull(message = "Numero massimo di posti è obbligatorio!")
-        String postimax,
+        @NotNull(message = "Numero di posti disponibili è obbligatorio!")
+        int postimax,
         @NotNull(message = "Id organizzatore obbligatorio!")
         UUID userId
 

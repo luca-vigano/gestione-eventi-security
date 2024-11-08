@@ -54,7 +54,7 @@ public class EventoService {
         eventoFound.setDataevento(body.dataevento());
         eventoFound.setLuogo(body.luogo());
         eventoFound.setTitolo(body.titolo());
-        eventoFound.setPostimax(body.postimax());
+        eventoFound.setPostidisponibili(body.postimax());
         eventoFound.setDescrizione(body.descrizione());
         return this.eventoRepository.save(eventoFound);
     }

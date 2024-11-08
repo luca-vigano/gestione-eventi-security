@@ -24,9 +24,9 @@ public class Prenotazione {
     @ManyToOne
     private Evento evento;
 
-    private String numeropostiprenotati;
+    private int numeropostiprenotati;
 
-    public Prenotazione(User user, Evento evento, String numeropostiprenotati) {
+    public Prenotazione(User user, Evento evento, int numeropostiprenotati) {
         this.user = user;
         this.evento = evento;
         this.numeropostiprenotati = numeropostiprenotati;

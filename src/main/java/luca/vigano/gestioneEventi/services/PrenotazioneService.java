@@ -38,11 +38,14 @@ public class PrenotazioneService {
         if(!prenotazioniEsistenti.isEmpty()){
             throw new BadRequestException("l'utente ha già una prenotazione in questa data");
         }
-
+        if(eventoFound.getPostidisponibili()< body.numeroposti()){
+            throw new BadRequestException("non ci sono abbastanza posti disponibili all'evento");
+        }
         Prenotazione prenotazione = new Prenotazione();
         prenotazione.setEvento(eventoFound);
         prenotazione.setUser(userfound);
         prenotazione.setNumeropostiprenotati(body.numeroposti());
+        eventoFound.setPostidisponibili(eventoFound.getPostidisponibili() - body.numeroposti());
         return prenotazioneRepository.save(prenotazione);
     }
 
@@ -72,7 +75,7 @@ public class PrenotazioneService {
             prenotazione.setEvento(evento);
         }
 
-        if (prenotazioneDTO.numeroposti() != null) {
+        if (prenotazioneDTO.numeroposti() != 0) {
             prenotazione.setNumeropostiprenotati(prenotazioneDTO.numeroposti());
         }
 
